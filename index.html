@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poker Lobby</title>
+</head>
+<body>
+    <h1>Multiplayer Poker</h1>
+
+    <div id="lobbyMenu">
+        <h3>Create Lobby</h3>
+        Start chips: <input id="startChips" type="number" value="1000"><br>
+        Small Blind: <input id="smallBlind" type="number" value="10"><br>
+        Big Blind: <input id="bigBlind" type="number" value="20"><br>
+        Rounds: <input id="rounds" type="number" value="10"><br>
+        <button onclick="createLobby()">Create Lobby</button>
+
+        <h3>Join Lobby</h3>
+        Lobby ID: <input id="lobbyIdInput" placeholder="Enter lobby ID">
+        <button onclick="joinLobby()">Join</button>
+    </div>
+
+    <div id="lobbyView" style="display:none;">
+        <h2>Lobby</h2>
+        <p id="lobbyInfo"></p>
+        <ul id="playerList"></ul>
+        <button id="startBtn" onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="gameView" style="display:none;">
+        <h2>Game Started!</h2>
+        <p id="gameInfo"></p>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
