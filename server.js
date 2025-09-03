@@ -6,6 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+// Serve frontend från /public
 app.use(express.static("public"));
 
 let lobbies = {}; // { lobbyId: { hostId, settings, players: [] } }
@@ -45,7 +46,6 @@ io.on("connection", (socket) => {
         if (lobby && socket.id === lobby.hostId) {
             let players = lobby.players;
 
-            // Dra blinds
             if (players.length >= 2) {
                 players[0].chips -= lobby.settings.smallBlind;
                 players[1].chips -= lobby.settings.bigBlind;
@@ -77,6 +77,7 @@ io.on("connection", (socket) => {
     });
 });
 
+// Render använder PORT från env
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
